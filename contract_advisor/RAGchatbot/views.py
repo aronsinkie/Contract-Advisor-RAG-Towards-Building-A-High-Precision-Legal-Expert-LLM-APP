@@ -15,6 +15,8 @@ from langchain.llms import OpenAI
 from langchain.text_splitter import CharacterTextSplitter
 from langchain.vectorstores import Chroma
 import os
+openai.api_key = getpass("Please provide your OpenAI Key: ")
+os.environ["OPENAI_API_KEY"] = openai.api_key
 def create_qa_model():
 
     # Load documents
@@ -117,14 +119,3 @@ def register(request):
 def logout(request):
     auth.logout(request)
     return redirect('login')
-import os
-import sys
-from dotenv import load_dotenv
-from langchain.chains import ConversationalRetrievalChain
-from langchain.text_splitter import CharacterTextSplitter
-from langchain_community.document_loaders import PyPDFLoader
-from langchain_community.document_loaders import Docx2txtLoader
-from langchain_community.document_loaders import TextLoader
-from langchain_community.vectorstores import Chroma
-from langchain_openai import ChatOpenAI
-from langchain_openai import OpenAIEmbeddings
